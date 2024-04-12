@@ -31,10 +31,11 @@ async function send() {
 }
 
 send().catch(console.error);
-```javascript
+```
 # Código do Consumidor (Receptor)
 
-```const amqp = require('amqplib');
+```javascript
+const amqp = require('amqplib');
 
 async function receive() {
   const connection = await amqp.connect('amqp://localhost');
