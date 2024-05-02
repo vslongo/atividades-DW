@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Vote Counter</title>
+</head>
+<body>
+    <h1>Real-time Vote Counter</h1>
+    <div id="votes">
+        <p>Yes Votes: <span id="yes-votes">0</span></p>
+        <p>No Votes: <span id="no-votes">0</span></p>
+    </div>
+
+    <script>
+        const eventSource = new EventSource('/votes');
+
+        eventSource.onmessage = function(event) {
+            const votes = JSON.parse(event.data);
+            document.getElementById('yes-votes').textContent = votes.yes;
+            document.getElementById('no-votes').textContent = votes.no;
+        };
+    </script>
+</body>
+</html>
